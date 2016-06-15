@@ -1,0 +1,8 @@
+.flatpak-builder/
+gnome
+repo
+sdk
+metadata.platform
+metadata.sdk
+org.appbox.Sdk.json
+

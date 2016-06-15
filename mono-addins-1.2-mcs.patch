@@ -1,0 +1,23 @@
+diff -Nur mono-addins-mono-addins-1.2.orig/autogen.sh mono-addins-mono-addins-1.2/autogen.sh
+--- mono-addins-mono-addins-1.2.orig/autogen.sh	2014-11-20 00:42:01.000000000 +0100
++++ mono-addins-mono-addins-1.2/autogen.sh	2016-06-15 11:49:04.308649166 +0200
+@@ -79,5 +79,5 @@
+ echo "Running $AUTOCONF ..."
+ $AUTOCONF
+ 
+-echo Running $srcdir/configure $conf_flags "$@" ...
+-$srcdir/configure --enable-maintainer-mode $conf_flags "$@" \
++#echo Running $srcdir/configure $conf_flags "$@" ...
++#srcdir/configure --enable-maintainer-mode $conf_flags "$@" \
+diff -Nur mono-addins-mono-addins-1.2.orig/configure.ac mono-addins-mono-addins-1.2/configure.ac
+--- mono-addins-mono-addins-1.2.orig/configure.ac	2014-11-20 00:42:01.000000000 +0100
++++ mono-addins-mono-addins-1.2/configure.ac	2016-06-15 11:13:35.974026039 +0200
+@@ -18,7 +18,7 @@
+ 
+ AC_PROG_INSTALL
+ 
+-AC_PATH_PROG(MCS, gmcs, no)
++AC_PATH_PROG(MCS, mcs, no)
+ if test "x$MCS" = "xno"; then
+         AC_MSG_ERROR([mcs Not found])
+ fi

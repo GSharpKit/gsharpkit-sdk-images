@@ -1,0 +1,5 @@
+[Runtime]
+name=org.appbox.Sdk
+runtime=org.appbox.Platform/@@SDK_ARCH@@/@@SDK_BRANCH@@
+sdk=org.appbox.Sdk/@@SDK_ARCH@@/@@SDK_BRANCH@@
+
