@@ -5,7 +5,7 @@ REPO   ?= repo
 # SDK Versions setup here
 #
 # SDK_BRANCH:          The version (branch) of runtime and sdk to produce
-# SDK_RUNTIME_VERSION: The org.freedesktop.BaseSdk and platform version to build against
+# SDK_RUNTIME_VERSION: The org.gnome.Sdk and platform version to build against
 #
 SDK_BRANCH=2.0
 SDK_RUNTIME_VERSION=3.20
@@ -24,18 +24,16 @@ define subst-metadata
 	@echo "Done.";
 endef
 
-build: ${REPO} $(patsubst %,%.in,$(SUBST_FILES))
-	$(call subst-metadata)
-	flatpak-builder --build-only --force-clean --ccache --require-changes --repo=${REPO} --arch=${ARCH} \
-                        --subject="build of org.appbox.Sdk, `date`" \
-                        ${EXPORT_ARGS} sdk org.appbox.Sdk.json
-
-
 all: ${REPO} $(patsubst %,%.in,$(SUBST_FILES))
 	$(call subst-metadata)
-	flatpak-builder --force-clean --ccache --require-changes --repo=${REPO} --arch=${ARCH} \
-                        --subject="build of org.appbox.Sdk, `date`" \
-                        ${EXPORT_ARGS} sdk org.appbox.Sdk.json
+	flatpak-builder --force-clean --ccache --require-changes --repo=${REPO} --arch=${ARCH} --subject="build of org.appbox.Sdk, `date`" sdk org.appbox.Sdk.json
+
+build: ${REPO} $(patsubst %,%.in,$(SUBST_FILES))
+	$(call subst-metadata)
+	flatpak-builder --build-only --force-clean --ccache --require-changes --repo=${REPO} --arch=${ARCH} --subject="build of org.appbox.Sdk, `date`" sdk org.appbox.Sdk.json
+
+export:
+	flatpak build-update-repo --gpg-sign=C479B0DC215B16EFE8925A535B3A9C2AADA2CB4A ./repo
 
 ${REPO}:
 	ostree  init --mode=archive-z2 --repo=${REPO}

@@ -17,7 +17,13 @@
                  "/share/gtk-doc",
                  "/share/devhelp",
                  "/lib/systemd",
-                 "*.la", "*.a", "*.dll.mdb"],
+                 "*.la",
+                 "*.a",
+                 "*.dll.mdb",
+                 "*.exe.mdb",
+                 "*.dll.pdb",
+                 "*.exe.pdb"
+               ],
     "cleanup-commands": [ "touch -d @0 /usr/share/fonts",
                           "touch -d @0 /usr/share/fonts/*",
                           "fc-cache -fs"
@@ -64,8 +70,8 @@
             "sources": [
                 {
                     "type": "archive",
-                    "url": "http://download.mono-project.com/sources/mono/mono-4.4.0.182.tar.bz2",
-                    "sha256": "983e27a054bc3dc6709b32b8de45a0f4335e9e9c3911b20d29f63eb7cc00bfe5"
+                    "url": "http://download.mono-project.com/sources/mono/mono-4.4.2.4.tar.bz2",
+                    "sha256": "ed21ba34b45bb90a5942fa31a404ed918ce844a9b299f604d0e7da0df35a3aee"
                 }
             ]
         },
@@ -90,7 +96,7 @@
                 },
 		{
                     "type": "patch",
-                    "path": "mono-addins-1.2-mcs.patch"
+                    "path": "mono-addins-mcs.patch"
                 }
             ]
         },
@@ -124,11 +130,11 @@
                 },
 		{
                     "type": "patch",
-                    "path": "ndesk-dbus-glib-0.4.2.patch"
+                    "path": "dbus-sharp-glib-no-system-bus.patch"
                 },
 		{
                     "type": "patch",
-                    "path": "dbus-sharp-glib-0.6.0-mcs.patch"
+                    "path": "dbus-sharp-glib-mcs.patch"
                 }
             ]
         },
@@ -137,8 +143,8 @@
             "sources": [
                 {
                     "type": "archive",
-                    "url": "https://github.com/openmedicus/webkitgtk3-sharp/archive/webkitgtk3-sharp-2.4.9.tar.gz",
-                    "sha256": "5b35f451aede62a7d5d4978371f56d7399c186be9edeefb73900ea154da999bc"
+                    "url": "https://github.com/openmedicus/webkitgtk3-sharp/archive/2.4.11.tar.gz",
+                    "sha256": "14e36f050cf623ccd8252d3fc79847a5388294ab4b2320d0ed6ed41a7fe7a075"
                 }
             ]
         },
@@ -166,12 +172,12 @@
             "sources": [
                 {
                     "type": "archive",
-                    "url": "https://github.com/npgsql/npgsql/archive/v3.1.3.tar.gz",
-                    "sha256": "855686537e1c62b3391d6ce5352448fb712b786bab6d1c2b75e7a2d8e88cc0b3"
+                    "url": "https://github.com/npgsql/npgsql/archive/v3.1.4.tar.gz",
+                    "sha256": "4986953142fc9d45f453811a6099d07fdb83d355c44f386555d9291b0db126df"
                 },
 		{
                     "type": "patch",
-                    "path": "npgsql-confgire.patch"
+                    "path": "npgsql-configure.patch"
                 },
 		{
                     "type": "file",

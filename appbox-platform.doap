@@ -4,7 +4,7 @@
          xmlns:gnome="http://api.gnome.org/doap-extensions#"
          xmlns="http://usefulinc.com/ns/doap#">
 
-  <name xml:lang="en">appbox-platform</name>
+  <name xml:lang="en">appbox-sdk-images</name>
   <shortdesc xml:lang="en">Appbox SDK images</shortdesc>
   <homepage rdf:resource="https://wiki.gnome.org/Projects/SandboxedApps" />
 
