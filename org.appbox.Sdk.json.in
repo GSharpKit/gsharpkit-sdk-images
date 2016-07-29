@@ -70,8 +70,8 @@
             "sources": [
                 {
                     "type": "archive",
-                    "url": "http://download.mono-project.com/sources/mono/mono-4.4.2.4.tar.bz2",
-                    "sha256": "ed21ba34b45bb90a5942fa31a404ed918ce844a9b299f604d0e7da0df35a3aee"
+                    "url": "http://download.mono-project.com/sources/mono/mono-4.4.2.8.tar.bz2",
+                    "sha256": "07c142bf8b97713c26b7e6ca9c53ce2cbf3b270b535e4157f9ed9104dbc891e8"
                 }
             ]
         },
@@ -172,8 +172,8 @@
             "sources": [
                 {
                     "type": "archive",
-                    "url": "https://github.com/npgsql/npgsql/archive/v3.1.4.tar.gz",
-                    "sha256": "4986953142fc9d45f453811a6099d07fdb83d355c44f386555d9291b0db126df"
+                    "url": "https://github.com/npgsql/npgsql/archive/v3.1.6.tar.gz",
+                    "sha256": "7bd081357a10b5617553b750eb54d8903f906474abd782b2527433c066ed095c"
                 },
 		{
                     "type": "patch",
