@@ -1,7 +1,7 @@
 {
     "build-runtime": true,
-    "id": "org.appbox.Sdk",
-    "id-platform": "org.appbox.Platform",
+    "id": "org.gsharpkit.Sdk",
+    "id-platform": "org.gsharpkit.Platform",
     "branch": "@@SDK_BRANCH@@",
     "runtime": "org.gnome.Platform",
     "sdk": "org.gnome.Sdk",
@@ -48,19 +48,8 @@
             "sources": [
                 {
                     "type": "archive",
-                    "url": "https://download.gnome.org/sources/gdl/3.20/gdl-3.20.0.tar.xz",
-                    "sha256": "53d3a3bb9b9be25b3a40c644fdbbb57a5a63ee1f5f839c2266d1cd9779360e8b"
-                }
-            ]
-        },
-	{
-            "name": "webkitgtk3",
-            "config-opts": [ "--with-gtk=3.0", "--disable-webkit2", "--disable-gtk-doc-html" ],
-            "sources": [
-                {
-                    "type": "archive",
-                    "url": "http://webkitgtk.org/releases/webkitgtk-2.4.11.tar.xz",
-                    "sha256": "588aea051bfbacced27fdfe0335a957dca839ebe36aa548df39c7bbafdb65bf7"
+                    "url": "https://download.gnome.org/sources/gdl/3.26/gdl-3.26.0.tar.xz",
+                    "sha256": "f3ad03f9a34f751f52464e22d962c0dec8ff867b7b7b37fe24907f3dcd54c079"
                 }
             ]
         },
@@ -70,18 +59,18 @@
             "sources": [
                 {
                     "type": "archive",
-                    "url": "http://download.mono-project.com/sources/mono/mono-4.6.0.125.tar.bz2",
-                    "sha256": "700d4d26f6b09c542c172ec2398e6047f479980e2542746e58dccf95001cbd10"
+                    "url": "http://download.mono-project.com/sources/mono/mono-5.8.0.108.tar.bz2",
+                    "sha256": "ecd7c55c2f62caa65fb360ace74a45ee44bbe2de046566d90594ba66c082f39c"
                 }
             ]
         },
         {
-            "name": "gtk-sharp3",
+            "name": "GtkSharp",
             "sources": [
                 {
                     "type": "archive",
-                    "url": "https://github.com/openmedicus/gtk-sharp/archive/gtk-sharp-3.20.4.tar.gz",
-                    "sha256": "8b52da8784a240f451414b5f8d6a13becd89a0be6cadf2eedbe395e6908dbb74"
+                    "url": "https://github.com/GSharpKit/GtkSharp/archive/v3.22.6.tar.gz",
+                    "sha256": "43d91958e1d4be131aac5ea4657392101d8d80abe557ae56dff4f2593910b818"
                 }
             ]
         },
@@ -91,8 +80,8 @@
             "sources": [
                 {
                     "type": "archive",
-                    "url": "https://github.com/mono/mono-addins/archive/mono-addins-1.3.tar.gz",
-                    "sha256": "e2c4db9fd12087b795dd03a035c6ab8daffe157694d98dcfe227067913db5580"
+                    "url": "https://github.com/mono/mono-addins/archive/mono-addins-1.3.3.tar.gz",
+                    "sha256": "254539d14e71789814a4fd37ed444dd33fc8ddb5fc082b1bf8e93f3d5d840b14"
                 },
 		{
                     "type": "file",
@@ -102,12 +91,12 @@
             ]
         },
         {
-            "name": "gdl-sharp",
+            "name": "GdlSharp",
             "sources": [
                 {
                     "type": "archive",
-                    "url": "https://github.com/openmedicus/gdl-sharp/archive/gdl-sharp-3.20.0.tar.gz",
-                    "sha256": "ac6e17c2795d284c345d6437ba73206a1a65fcbeadfef8881f39e8b9ee2a3e8d"
+                    "url": "https://github.com/GSharpKit/GdlSharp/archive/v3.26.0.tar.gz",
+                    "sha256": "d7bd2c6974ea5a3eb060652d98402186579eab905ba000887b580d7c149372e1"
                 }
             ]
         },
@@ -116,8 +105,8 @@
             "sources": [
                 {
                     "type": "archive",
-                    "url": "https://github.com/openmedicus/dbus-sharp/archive/dbus-sharp-0.9.0.tar.gz",
-                    "sha256": "81bfa0a10b31d2e469bf7523b62c866a41c5a13bfad2e7889521abcaadf08116"
+                    "url": "https://github.com/GSharpKit/dbus-sharp/archive/v0.9.2.tar.gz",
+                    "sha256": "f1e50ab257e0318418e78d4f5450555041e75e4fc03b0b8e8896671f445c5197"
                 }
             ]
         },
@@ -136,16 +125,6 @@
 		{
                     "type": "patch",
                     "path": "dbus-sharp-glib-mcs.patch"
-                }
-            ]
-        },
-	{
-            "name": "webkitgtk3-sharp",
-            "sources": [
-                {
-                    "type": "archive",
-                    "url": "https://github.com/openmedicus/webkitgtk3-sharp/archive/2.4.11.tar.gz",
-                    "sha256": "14e36f050cf623ccd8252d3fc79847a5388294ab4b2320d0ed6ed41a7fe7a075"
                 }
             ]
         },
@@ -184,6 +163,27 @@
                     "type": "file",
                     "path": "configure",
                     "dest-filename": "configure"
+                }
+            ]
+        },
+	{
+            "name": "webkitgtk3",
+            "config-opts": [ "--with-gtk=3.0", "--disable-webkit2", "--disable-gtk-doc-html" ],
+            "sources": [
+                {
+                    "type": "archive",
+                    "url": "http://webkitgtk.org/releases/webkitgtk-2.4.11.tar.xz",
+                    "sha256": "588aea051bfbacced27fdfe0335a957dca839ebe36aa548df39c7bbafdb65bf7"
+                }
+            ]
+        },
+	{
+            "name": "webkitgtk3-sharp",
+            "sources": [
+                {
+                    "type": "archive",
+                    "url": "https://github.com/openmedicus/webkitgtk3-sharp/archive/2.4.11.tar.gz",
+                    "sha256": "14e36f050cf623ccd8252d3fc79847a5388294ab4b2320d0ed6ed41a7fe7a075"
                 }
             ]
         }

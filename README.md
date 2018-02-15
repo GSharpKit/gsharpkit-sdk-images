@@ -1,1 +1,1 @@
-# appbox-sdk-images
+# gsharpkit-sdk-images

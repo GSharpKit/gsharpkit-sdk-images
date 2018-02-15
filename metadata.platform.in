@@ -1,5 +1,5 @@
 [Runtime]
-name=org.appbox.Platform
-runtime=org.appbox.Platform/@@SDK_ARCH@@/@@SDK_BRANCH@@
-sdk=org.appbox.Sdk/@@SDK_ARCH@@/@@SDK_BRANCH@@
+name=org.gsharpkit.Platform
+runtime=org.gsharpkit.Platform/@@SDK_ARCH@@/@@SDK_BRANCH@@
+sdk=org.gsharpkit.Sdk/@@SDK_ARCH@@/@@SDK_BRANCH@@
 

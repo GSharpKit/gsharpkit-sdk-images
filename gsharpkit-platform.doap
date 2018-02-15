@@ -4,9 +4,9 @@
          xmlns:gnome="http://api.gnome.org/doap-extensions#"
          xmlns="http://usefulinc.com/ns/doap#">
 
-  <name xml:lang="en">appbox-sdk-images</name>
-  <shortdesc xml:lang="en">Appbox SDK images</shortdesc>
-  <homepage rdf:resource="https://www.appbox.info" />
+  <name xml:lang="en">gsharpkit-sdk-images</name>
+  <shortdesc xml:lang="en">GSharpKit SDK images</shortdesc>
+  <homepage rdf:resource="https://www.gsharpkit.org" />
 
   <maintainer>
     <foaf:Person>
