@@ -45,27 +45,33 @@
     "modules": [
 	{
             "name": "gdl",
+            "config-opts": [ "--enable-gtk-doc-html=yes", "--enable-gtk-doc=yes", "--enable-gtk-doc-pdf=no" ],
             "sources": [
                 {
                     "type": "archive",
-                    "url": "https://download.gnome.org/sources/gdl/3.26/gdl-3.26.0.tar.xz",
-                    "sha256": "f3ad03f9a34f751f52464e22d962c0dec8ff867b7b7b37fe24907f3dcd54c079"
+                    "url": "https://download.gnome.org/sources/gdl/3.28/gdl-3.28.0.tar.xz",
+                    "sha256": "52cc98ecc105148467b3b2b4e0d27ae484b1b6710d53413f771ed07ef1b737b6"
+                },
+                {
+                    "type": "patch",
+                    "path": "patches/gdl-nodocs.patch"
                 }
             ]
         },
         {
             "name": "mono-core",
-            "config-opts": [ "--with-sgen=yes"],
+            "config-opts": [ "--with-sgen=yes", "--enable-btls" ],
             "sources": [
                 {
                     "type": "archive",
-                    "url": "http://download.mono-project.com/sources/mono/mono-5.8.0.108.tar.bz2",
-                    "sha256": "ecd7c55c2f62caa65fb360ace74a45ee44bbe2de046566d90594ba66c082f39c"
+                    "url": "http://download.mono-project.com/sources/mono/preview/mono-5.12.0.226.tar.bz2",
+                    "sha256": "f0636baa0c1399805526142e799cb697ddccf736e506cf1a30a870eaa2830a89"
                 }
             ]
         },
         {
             "name": "GtkSharp",
+	    "buildsystem": "meson",
             "sources": [
                 {
                     "type": "archive",
@@ -87,6 +93,10 @@
                     "type": "file",
                     "path": "autogen.sh",
                     "dest-filename": "autogen.sh"
+                },
+		{
+                    "type": "patch",
+                    "path": "patches/mono-addins-sign.patch"
                 }
             ]
         },
@@ -125,44 +135,6 @@
 		{
                     "type": "patch",
                     "path": "dbus-sharp-glib-mcs.patch"
-                }
-            ]
-        },
-	{
-            "name": "Newtonsoft.Json",
-            "sources": [
-                {
-                    "type": "archive",
-                    "url": "https://github.com/JamesNK/Newtonsoft.Json/archive/8.0.3.tar.gz",
-                    "sha256": "f55ae3e7641ddda03ca3203819d432ecf7c353fb000c6ac6914f01a5393023df"
-                },
-		{
-                    "type": "patch",
-                    "path": "Newtonsoft.Json.patch"
-                },
-		{
-                    "type": "file",
-                    "path": "configure",
-                    "dest-filename": "configure"
-                }
-            ]
-        },
-	{
-            "name": "Npgsql",
-            "sources": [
-                {
-                    "type": "archive",
-                    "url": "https://github.com/npgsql/npgsql/archive/v3.1.7.tar.gz",
-                    "sha256": "f7dede9416158e0b03a9abd02066c2b9c8772be41c631b17ee1ba0f24b778554"
-                },
-		{
-                    "type": "patch",
-                    "path": "npgsql-configure.patch"
-                },
-		{
-                    "type": "file",
-                    "path": "configure",
-                    "dest-filename": "configure"
                 }
             ]
         },

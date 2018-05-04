@@ -14,7 +14,7 @@ RPATH=/www/sdk.gsharpkit.org
 # SDK_RUNTIME_VERSION: The org.gnome.Sdk and platform version to build against
 #
 SDK_BRANCH=2.4
-SDK_RUNTIME_VERSION=3.22
+SDK_RUNTIME_VERSION=3.28
 
 # Canned recipe for generating metadata
 SUBST_FILES=org.gsharpkit.Sdk.json metadata.sdk metadata.platform
@@ -53,8 +53,9 @@ ${REPO}:
 
 
 install-sdk:
-	flatpak install org.gnome.Platform/x86_64/3.22
-	flatpak install org.gnome.Sdk/x86_64/3.22
-	flatpak install org.gnome.Sdk.Locale/x86_64/3.22
+	flatpak install gnome org.gnome.Platform/x86_64/${SDK_RUNTIME_VERSION}
+	flatpak install gnome org.gnome.Sdk/x86_64/${SDK_RUNTIME_VERSION}
+	flatpak install gnome org.gnome.Sdk.Locale/x86_64/${SDK_RUNTIME_VERSION}
+	flatpak install gnome org.gnome.Sdk.Debug/x86_64/${SDK_RUNTIME_VERSION}
 	flatpak update --user --subpath= org.gnome.Sdk.Locale
 
