@@ -1,0 +1,10 @@
+prefix=/usr
+exec_prefix=${prefix}
+libdir=/usr/lib/mono
+
+Name: Newtonsoft.Json
+Description: Json.NET is a popular high-performance JSON framework for .NET
+Requires:
+Version: 10.0.0.0
+Libs: -r:${libdir}/Newtonsoft.Json/Newtonsoft.Json.dll
+Cflags:

@@ -1,0 +1,10 @@
+prefix=/usr
+exec_prefix=${prefix}
+libdir=/usr/lib/mono
+
+Name: Npgsql
+Description: Npgsql - Postgresql database connectivity for C#
+Requires:
+Version: 3.2.7
+Libs: -r:System.Data.dll -r:${libdir}/Npgsql/Npgsql.dll -r:${libdir}/System.Threading.Tasks.Extensions/System.Threading.Tasks.Extensions.dll
+Cflags:

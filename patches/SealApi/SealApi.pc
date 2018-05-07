@@ -1,0 +1,10 @@
+prefix=/usr
+exec_prefix=${prefix}
+libdir=/usr/lib
+
+Name: SealApi
+Description: SealApi - SealApi for SAML 
+Requires:
+Version: 2.0.7
+Libs: -r:${libdir}/mono/SealApi/SealApi.dll -r:${libdir}/Microsoft.Web.Services3.dll
+Cflags:

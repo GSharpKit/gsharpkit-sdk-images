@@ -43,6 +43,25 @@
         }
     },
     "modules": [
+        {
+            "name": "webkitgtk3",
+            "config-opts": [ "--with-gtk=3.0", "--disable-webkit2", "--disable-gtk-doc-html" ],
+            "sources": [
+                {
+                    "type": "archive",
+                    "url": "http://webkitgtk.org/releases/webkitgtk-2.4.11.tar.xz",
+                    "sha256": "588aea051bfbacced27fdfe0335a957dca839ebe36aa548df39c7bbafdb65bf7"
+                },
+                {
+                    "type": "patch",
+                    "path": "patches/webkitgtk3/webkitgtk-2.4.8-user-agent.patch"
+                },
+                {
+                    "type": "patch",
+                    "path": "patches/webkitgtk3/webkitgtk-2.4.9-abs.patch"
+                }
+            ]
+        },
 	{
             "name": "gdl",
             "config-opts": [ "--enable-gtk-doc-html=yes", "--enable-gtk-doc=yes", "--enable-gtk-doc-pdf=no" ],
@@ -80,6 +99,16 @@
                 }
             ]
         },
+        {
+            "name": "webkitgtk3-sharp",
+            "sources": [
+                {
+                    "type": "archive",
+                    "url": "https://github.com/openmedicus/webkitgtk3-sharp/archive/2.4.11.tar.gz",
+                    "sha256": "14e36f050cf623ccd8252d3fc79847a5388294ab4b2320d0ed6ed41a7fe7a075"
+                }
+            ]
+        },
 	{
             "name": "mono-addins",
             "config-opts": [ "--disable-gui"],
@@ -114,9 +143,20 @@
             "name": "dbus-sharp",
             "sources": [
                 {
-                    "type": "archive",
-                    "url": "https://github.com/GSharpKit/dbus-sharp/archive/v0.9.2.tar.gz",
-                    "sha256": "f1e50ab257e0318418e78d4f5450555041e75e4fc03b0b8e8896671f445c5197"
+                    "type": "file",
+                    "path": "patches/dbus-sharp/dbus-sharp.dll"
+                },
+                {
+                    "type": "file",
+                    "path": "patches/dbus-sharp/dbus-sharp-2.0.pc"
+                },
+                {
+                    "type": "file",
+                    "path": "patches/configure"
+                },
+                {
+                    "type": "file",
+                    "path": "patches/dbus-sharp/Makefile"
                 }
             ]
         },
@@ -138,24 +178,220 @@
                 }
             ]
         },
-	{
-            "name": "webkitgtk3",
-            "config-opts": [ "--with-gtk=3.0", "--disable-webkit2", "--disable-gtk-doc-html" ],
+        {
+            "name": "Newtonsoft.Json",
             "sources": [
                 {
                     "type": "archive",
-                    "url": "http://webkitgtk.org/releases/webkitgtk-2.4.11.tar.xz",
-                    "sha256": "588aea051bfbacced27fdfe0335a957dca839ebe36aa548df39c7bbafdb65bf7"
+                    "path": "patches/Newtonsoft.Json/Newtonsoft.Json-10.0.3.zip"
+                },
+                {
+                    "type": "file",
+                    "path": "patches/Newtonsoft.Json/Newtonsoft.Json.pc"
+                },
+                {
+                    "type": "file",
+                    "path": "patches/configure"
+                },
+                {
+                    "type": "file",
+                    "path": "patches/Newtonsoft.Json/Makefile"
                 }
             ]
         },
-	{
-            "name": "webkitgtk3-sharp",
+        {
+            "name": "Npgsql",
             "sources": [
                 {
                     "type": "archive",
-                    "url": "https://github.com/openmedicus/webkitgtk3-sharp/archive/2.4.11.tar.gz",
-                    "sha256": "14e36f050cf623ccd8252d3fc79847a5388294ab4b2320d0ed6ed41a7fe7a075"
+                    "path": "patches/Npgsql/Npgsql-3.2.7.zip"
+                },
+                {
+                    "type": "file",
+                    "path": "patches/Npgsql/System.Threading.Tasks.Extensions.dll"
+                },
+                {
+                    "type": "file",
+                    "path": "patches/Npgsql/Npgsql.pc"
+                },
+                {
+                    "type": "file",
+                    "path": "patches/configure"
+                },
+                {
+                    "type": "file",
+                    "path": "patches/Npgsql/Makefile"
+                }
+            ]
+        },
+        {
+            "name": "BouncyCastle",
+            "sources": [
+                {
+                    "type": "archive",
+                    "path": "patches/BouncyCastle/BouncyCastle-1.8.1.zip"
+                },
+                {
+                    "type": "file",
+                    "path": "patches/BouncyCastle/BouncyCastle.pc"
+                },
+                {
+                    "type": "file",
+                    "path": "patches/configure"
+                },
+                {
+                    "type": "file",
+                    "path": "patches/BouncyCastle/Makefile"
+                }
+            ]
+        },
+        {
+            "name": "MimeKit",
+            "sources": [
+                {
+                    "type": "archive",
+                    "path": "patches/MimeKit/MimeKit-1.22.0.zip"
+                },
+                {
+                    "type": "file",
+                    "path": "patches/MimeKit/MimeKit.pc"
+                },
+                {
+                    "type": "file",
+                    "path": "patches/configure"
+                },
+                {
+                    "type": "file",
+                    "path": "patches/MimeKit/Makefile"
+                }
+            ]
+        },
+        {
+            "name": "MailKit",
+            "sources": [
+                {
+                    "type": "archive",
+                    "path": "patches/MailKit/MailKit-1.22.0.zip"
+                },
+                {
+                    "type": "file",
+                    "path": "patches/MailKit/MailKit.pc"
+                },
+                {
+                    "type": "file",
+                    "path": "patches/configure"
+                },
+                {
+                    "type": "file",
+                    "path": "patches/MailKit/Makefile"
+                }
+            ]
+        },
+        {
+            "name": "ServiceStack",
+            "sources": [
+                {
+                    "type": "file",
+                    "path": "patches/ServiceStack/ServiceStack.dll"
+                },
+                {
+                    "type": "file",
+                    "path": "patches/ServiceStack/ServiceStack.Common.dll"
+                },
+                {
+                    "type": "file",
+                    "path": "patches/ServiceStack/ServiceStack.Client.dll"
+                },
+                {
+                    "type": "file",
+                    "path": "patches/ServiceStack/ServiceStack.Text.dll"
+                },
+                {
+                    "type": "file",
+                    "path": "patches/ServiceStack/ServiceStack.Interfaces.dll"
+                },
+                {
+                    "type": "file",
+                    "path": "patches/ServiceStack/ServiceStack.pc"
+                },
+                {
+                    "type": "file",
+                    "path": "patches/ServiceStack/ServiceStack.Interfaces.pc"
+                },
+                {
+                    "type": "file",
+                    "path": "patches/configure"
+                },
+                {
+                    "type": "file",
+                    "path": "patches/ServiceStack/Makefile"
+                }
+            ]
+        },
+        {
+            "name": "RestSharp",
+            "sources": [
+                {
+                    "type": "archive",
+                    "path": "patches/RestSharp/RestSharp-105.2.3.zip"
+                },
+                {
+                    "type": "file",
+                    "path": "patches/RestSharp/RestSharp.pc"
+                },
+                {
+                    "type": "file",
+                    "path": "patches/configure"
+                },
+                {
+                    "type": "file",
+                    "path": "patches/RestSharp/Makefile"
+                }
+            ]
+        },
+        {
+            "name": "SealApi",
+            "sources": [
+                {
+                    "type": "archive",
+                    "path": "patches/SealApi/SealApi-2.0.7.zip"
+                },
+                {
+                    "type": "file",
+                    "path": "patches/SealApi/Microsoft.Web.Services3.dll"
+                },
+                {
+                    "type": "file",
+                    "path": "patches/SealApi/SealApi.pc"
+                },
+                {
+                    "type": "file",
+                    "path": "patches/configure"
+                },
+                {
+                    "type": "file",
+                    "path": "patches/SealApi/Makefile"
+                }
+            ]
+        },
+        {
+            "name": "PDFsharp-MigraDoc",
+            "sources": [
+                {
+                    "type": "archive",
+                    "path": "patches/PDFsharp-MigraDoc/PDFsharp-MigraDoc-1.50.4845-RC2a.zip"
+                },
+                {
+                    "type": "file",
+                    "path": "patches/PDFsharp-MigraDoc/PDFsharp-MigraDoc.pc"
+                },
+                {
+                    "type": "file",
+                    "path": "patches/configure"
+                },
+                {
+                    "type": "file",
+                    "path": "patches/PDFsharp-MigraDoc/Makefile"
                 }
             ]
         }

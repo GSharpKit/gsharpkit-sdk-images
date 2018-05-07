@@ -1,0 +1,11 @@
+prefix=/usr
+datadir=${prefix}/share
+exec_prefix=${prefix}
+libdir=${prefix}/lib
+session_bus_services_dir=${datadir}/dbus-1/services
+
+Name: Managed DBus
+Description: Managed D-Bus IPC protocol library and CLR binding
+Version: 0.9
+URL: http://mono.github.com/dbus-sharp/
+Libs: -r:${libdir}/mono/dbus-sharp-2.0/dbus-sharp.dll

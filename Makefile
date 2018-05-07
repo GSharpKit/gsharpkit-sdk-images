@@ -5,7 +5,7 @@ REPO   ?= repo
 RSYNC=/usr/bin/rsync
 SSH=/usr/bin/ssh
 RUSER=root
-RHOST=sdk.gsharpkit.info
+RHOST=sdk.gsharpkit.org
 RPATH=/www/sdk.gsharpkit.org
 
 # SDK Versions setup here
@@ -32,18 +32,18 @@ endef
 
 all: ${REPO} $(patsubst %,%.in,$(SUBST_FILES))
 	$(call subst-metadata)
-	flatpak-builder --force-clean --ccache --require-changes --repo=${REPO} --arch=${ARCH} --gpg-sign=E7CE25C180A28B0AF66F15F4ABD3B7BFC46BFE6F --subject="build of org.gsharpkit.Sdk, `date`" sdk org.gsharpkit.Sdk.json
+	flatpak-builder --force-clean --ccache --require-changes --repo=${REPO} --arch=${ARCH} --gpg-sign=4AAD7E899A66D74F26DCF91331EE3632A7069907 --subject="build of org.gsharpkit.Sdk, `date`" sdk org.gsharpkit.Sdk.json
 
 build: ${REPO} $(patsubst %,%.in,$(SUBST_FILES))
 	$(call subst-metadata)
-	flatpak-builder --build-only --force-clean --ccache --require-changes --repo=${REPO} --arch=${ARCH} --gpg-sign=E7CE25C180A28B0AF66F15F4ABD3B7BFC46BFE6F --subject="build of org.gsharpkit.Sdk, `date`" sdk org.gsharpkit.Sdk.json
+	flatpak-builder --build-only --force-clean --ccache --require-changes --repo=${REPO} --arch=${ARCH} --gpg-sign=4AAD7E899A66D74F26DCF91331EE3632A7069907 --subject="build of org.gsharpkit.Sdk, `date`" sdk org.gsharpkit.Sdk.json
 
 update-repo: ${REPO} $(patsubst %,%.in,$(SUBST_FILES))
 	$(call subst-metadata)
-	flatpak-builder --force-clean --ccache --repo=${REPO} --arch=${ARCH} --gpg-sign=E7CE25C180A28B0AF66F15F4ABD3B7BFC46BFE6F --subject="build of org.gsharpkit.Sdk, `date`" sdk org.gsharpkit.Sdk.json
+	flatpak-builder --force-clean --ccache --repo=${REPO} --arch=${ARCH} --gpg-sign=4AAD7E899A66D74F26DCF91331EE3632A7069907 --subject="build of org.gsharpkit.Sdk, `date`" sdk org.gsharpkit.Sdk.json
 
 export:
-	flatpak build-update-repo --generate-static-deltas --prune --gpg-sign=E7CE25C180A28B0AF66F15F4ABD3B7BFC46BFE6F ./repo
+	flatpak build-update-repo --generate-static-deltas --prune --gpg-sign=4AAD7E899A66D74F26DCF91331EE3632A7069907 ./repo
 
 deploy:
 	${RSYNC} -avz --delete-after -e "${SSH}" repo ${RUSER}@${RHOST}:${RPATH}
