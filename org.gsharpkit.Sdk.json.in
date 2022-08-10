@@ -4,8 +4,8 @@
     "id-platform": "org.gsharpkit.Platform",
     "branch": "@@SDK_BRANCH@@",
     "runtime": "org.gnome.Platform",
-    "sdk": "org.gnome.Sdk",
     "runtime-version": "@@SDK_RUNTIME_VERSION@@",
+    "sdk": "org.gnome.Sdk",
     "writable-sdk": true,
     "sdk-extensions": [ "org.gnome.Sdk.Debug", "org.gnome.Sdk.Locale"],
     "platform-extensions": [ "org.gnome.Platform.Locale"],
@@ -18,11 +18,7 @@
                  "/share/devhelp",
                  "/lib/systemd",
                  "*.la",
-                 "*.a",
-                 "*.dll.mdb",
-                 "*.exe.mdb",
-                 "*.dll.pdb",
-                 "*.exe.pdb"
+                 "*.a"
                ],
     "cleanup-commands": [ "touch -d @0 /usr/share/fonts",
                           "touch -d @0 /usr/share/fonts/*",
@@ -45,7 +41,7 @@
     "modules": [
         {
             "name": "webkitgtk3",
-            "config-opts": [ "--with-gtk=3.0", "--disable-webkit2", "--disable-gtk-doc-html" ],
+            "buildsystem": "simple",
             "sources": [
                 {
                     "type": "archive",
@@ -59,339 +55,50 @@
                 {
                     "type": "patch",
                     "path": "patches/webkitgtk3/webkitgtk-2.4.9-abs.patch"
+                },
+                {
+                    "type": "patch",
+                    "path": "patches/webkitgtk3/webkitgtk-2.4.11-js.patch"
+                },
+                {
+                    "type": "patch",
+                    "path": "patches/webkitgtk3/webkitgtk-2.4.11-semicolon.patch"
+                }
+            ],
+            "build-commands": [
+                    "./configure --prefix=/usr --with-gtk=3.0 --disable-webkit2 --disable-jit --disable-introspection",
+                    "mkdir -p DerivedSources/webkit ; mkdir -p DerivedSources/WebCore ; mkdir -p DerivedSources/ANGLE ; mkdir -p DerivedSources/WebKit2 ; mkdir -p DerivedSources/webkitdom/ ; mkdir -p DerivedSources/InjectedBundle ; mkdir -p DerivedSources/Platform",
+                    "make -j1 V=1",
+                    "make install"
+            ]
+        },
+        {
+            "name": "intltool",
+            "cleanup": [ "*" ],
+            "sources": [
+                {
+                    "type": "archive",
+                    "url": "https://launchpad.net/intltool/trunk/0.51.0/+download/intltool-0.51.0.tar.gz",
+                    "sha256": "67c74d94196b153b774ab9f89b2fa6c6ba79352407037c8c14d5aeb334e959cd"
+                },
+                {
+                    "type": "patch",
+                    "path": "patches/intltool/intltool-nodocs.patch"
                 }
             ]
         },
 	{
             "name": "gdl",
-            "config-opts": [ "--enable-gtk-doc-html=yes", "--enable-gtk-doc=yes", "--enable-gtk-doc-pdf=no" ],
+            "config-opts": [ "--disable-nls", "--enable-gtk-doc-html=no", "--enable-gtk-doc=no", "--enable-gtk-doc-pdf=no", "--enable-introspection=no" ],
             "sources": [
                 {
                     "type": "archive",
-                    "url": "https://download.gnome.org/sources/gdl/3.28/gdl-3.28.0.tar.xz",
-                    "sha256": "52cc98ecc105148467b3b2b4e0d27ae484b1b6710d53413f771ed07ef1b737b6"
+                    "url": "https://download.gnome.org/sources/gdl/3.40/gdl-3.40.0.tar.xz",
+                    "sha256": "3641d4fd669d1e1818aeff3cf9ffb7887fc5c367850b78c28c775eba4ab6a555"
                 },
                 {
                     "type": "patch",
-                    "path": "patches/gdl-nodocs.patch"
-                }
-            ]
-        },
-        {
-            "name": "mono-core",
-            "config-opts": [ "--with-sgen=yes", "--enable-btls" ],
-            "sources": [
-                {
-                    "type": "archive",
-                    "url": "http://download.mono-project.com/sources/mono/preview/mono-5.12.0.226.tar.bz2",
-                    "sha256": "f0636baa0c1399805526142e799cb697ddccf736e506cf1a30a870eaa2830a89"
-                }
-            ]
-        },
-        {
-            "name": "GtkSharp",
-	    "buildsystem": "meson",
-            "sources": [
-                {
-                    "type": "archive",
-                    "url": "https://github.com/GSharpKit/GtkSharp/archive/v3.22.6.tar.gz",
-                    "sha256": "43d91958e1d4be131aac5ea4657392101d8d80abe557ae56dff4f2593910b818"
-                }
-            ]
-        },
-        {
-            "name": "webkitgtk3-sharp",
-            "sources": [
-                {
-                    "type": "archive",
-                    "url": "https://github.com/openmedicus/webkitgtk3-sharp/archive/2.4.11.tar.gz",
-                    "sha256": "14e36f050cf623ccd8252d3fc79847a5388294ab4b2320d0ed6ed41a7fe7a075"
-                }
-            ]
-        },
-	{
-            "name": "mono-addins",
-            "config-opts": [ "--disable-gui"],
-            "sources": [
-                {
-                    "type": "archive",
-                    "url": "https://github.com/mono/mono-addins/archive/mono-addins-1.3.3.tar.gz",
-                    "sha256": "254539d14e71789814a4fd37ed444dd33fc8ddb5fc082b1bf8e93f3d5d840b14"
-                },
-		{
-                    "type": "file",
-                    "path": "autogen.sh",
-                    "dest-filename": "autogen.sh"
-                },
-		{
-                    "type": "patch",
-                    "path": "patches/mono-addins-sign.patch"
-                }
-            ]
-        },
-        {
-            "name": "GdlSharp",
-            "sources": [
-                {
-                    "type": "archive",
-                    "url": "https://github.com/GSharpKit/GdlSharp/archive/v3.26.0.tar.gz",
-                    "sha256": "d7bd2c6974ea5a3eb060652d98402186579eab905ba000887b580d7c149372e1"
-                }
-            ]
-        },
-	{
-            "name": "dbus-sharp",
-            "sources": [
-                {
-                    "type": "file",
-                    "path": "patches/dbus-sharp/dbus-sharp.dll"
-                },
-                {
-                    "type": "file",
-                    "path": "patches/dbus-sharp/dbus-sharp-2.0.pc"
-                },
-                {
-                    "type": "file",
-                    "path": "patches/configure"
-                },
-                {
-                    "type": "file",
-                    "path": "patches/dbus-sharp/Makefile"
-                }
-            ]
-        },
-	{
-            "name": "dbus-sharp-glib",
-            "sources": [
-                {
-                    "type": "archive",
-                    "url": "https://github.com/mono/dbus-sharp-glib/archive/v0.6.tar.gz",
-                    "sha256": "d337d5a4dbaab2084972f85d175ba30ca87aa6baaa635288f3b37ca71f2d9047"
-                },
-		{
-                    "type": "patch",
-                    "path": "dbus-sharp-glib-no-system-bus.patch"
-                },
-		{
-                    "type": "patch",
-                    "path": "dbus-sharp-glib-mcs.patch"
-                }
-            ]
-        },
-        {
-            "name": "Newtonsoft.Json",
-            "sources": [
-                {
-                    "type": "archive",
-                    "path": "patches/Newtonsoft.Json/Newtonsoft.Json-10.0.3.zip"
-                },
-                {
-                    "type": "file",
-                    "path": "patches/Newtonsoft.Json/Newtonsoft.Json.pc"
-                },
-                {
-                    "type": "file",
-                    "path": "patches/configure"
-                },
-                {
-                    "type": "file",
-                    "path": "patches/Newtonsoft.Json/Makefile"
-                }
-            ]
-        },
-        {
-            "name": "Npgsql",
-            "sources": [
-                {
-                    "type": "archive",
-                    "path": "patches/Npgsql/Npgsql-3.2.7.zip"
-                },
-                {
-                    "type": "file",
-                    "path": "patches/Npgsql/System.Threading.Tasks.Extensions.dll"
-                },
-                {
-                    "type": "file",
-                    "path": "patches/Npgsql/Npgsql.pc"
-                },
-                {
-                    "type": "file",
-                    "path": "patches/configure"
-                },
-                {
-                    "type": "file",
-                    "path": "patches/Npgsql/Makefile"
-                }
-            ]
-        },
-        {
-            "name": "BouncyCastle",
-            "sources": [
-                {
-                    "type": "archive",
-                    "path": "patches/BouncyCastle/BouncyCastle-1.8.1.zip"
-                },
-                {
-                    "type": "file",
-                    "path": "patches/BouncyCastle/BouncyCastle.pc"
-                },
-                {
-                    "type": "file",
-                    "path": "patches/configure"
-                },
-                {
-                    "type": "file",
-                    "path": "patches/BouncyCastle/Makefile"
-                }
-            ]
-        },
-        {
-            "name": "MimeKit",
-            "sources": [
-                {
-                    "type": "archive",
-                    "path": "patches/MimeKit/MimeKit-1.22.0.zip"
-                },
-                {
-                    "type": "file",
-                    "path": "patches/MimeKit/MimeKit.pc"
-                },
-                {
-                    "type": "file",
-                    "path": "patches/configure"
-                },
-                {
-                    "type": "file",
-                    "path": "patches/MimeKit/Makefile"
-                }
-            ]
-        },
-        {
-            "name": "MailKit",
-            "sources": [
-                {
-                    "type": "archive",
-                    "path": "patches/MailKit/MailKit-1.22.0.zip"
-                },
-                {
-                    "type": "file",
-                    "path": "patches/MailKit/MailKit.pc"
-                },
-                {
-                    "type": "file",
-                    "path": "patches/configure"
-                },
-                {
-                    "type": "file",
-                    "path": "patches/MailKit/Makefile"
-                }
-            ]
-        },
-        {
-            "name": "ServiceStack",
-            "sources": [
-                {
-                    "type": "file",
-                    "path": "patches/ServiceStack/ServiceStack.dll"
-                },
-                {
-                    "type": "file",
-                    "path": "patches/ServiceStack/ServiceStack.Common.dll"
-                },
-                {
-                    "type": "file",
-                    "path": "patches/ServiceStack/ServiceStack.Client.dll"
-                },
-                {
-                    "type": "file",
-                    "path": "patches/ServiceStack/ServiceStack.Text.dll"
-                },
-                {
-                    "type": "file",
-                    "path": "patches/ServiceStack/ServiceStack.Interfaces.dll"
-                },
-                {
-                    "type": "file",
-                    "path": "patches/ServiceStack/ServiceStack.pc"
-                },
-                {
-                    "type": "file",
-                    "path": "patches/ServiceStack/ServiceStack.Interfaces.pc"
-                },
-                {
-                    "type": "file",
-                    "path": "patches/configure"
-                },
-                {
-                    "type": "file",
-                    "path": "patches/ServiceStack/Makefile"
-                }
-            ]
-        },
-        {
-            "name": "RestSharp",
-            "sources": [
-                {
-                    "type": "archive",
-                    "path": "patches/RestSharp/RestSharp-105.2.3.zip"
-                },
-                {
-                    "type": "file",
-                    "path": "patches/RestSharp/RestSharp.pc"
-                },
-                {
-                    "type": "file",
-                    "path": "patches/configure"
-                },
-                {
-                    "type": "file",
-                    "path": "patches/RestSharp/Makefile"
-                }
-            ]
-        },
-        {
-            "name": "SealApi",
-            "sources": [
-                {
-                    "type": "archive",
-                    "path": "patches/SealApi/SealApi-2.0.7.zip"
-                },
-                {
-                    "type": "file",
-                    "path": "patches/SealApi/Microsoft.Web.Services3.dll"
-                },
-                {
-                    "type": "file",
-                    "path": "patches/SealApi/SealApi.pc"
-                },
-                {
-                    "type": "file",
-                    "path": "patches/configure"
-                },
-                {
-                    "type": "file",
-                    "path": "patches/SealApi/Makefile"
-                }
-            ]
-        },
-        {
-            "name": "PDFsharp-MigraDoc",
-            "sources": [
-                {
-                    "type": "archive",
-                    "path": "patches/PDFsharp-MigraDoc/PDFsharp-MigraDoc-1.50.4845-RC2a.zip"
-                },
-                {
-                    "type": "file",
-                    "path": "patches/PDFsharp-MigraDoc/PDFsharp-MigraDoc.pc"
-                },
-                {
-                    "type": "file",
-                    "path": "patches/configure"
-                },
-                {
-                    "type": "file",
-                    "path": "patches/PDFsharp-MigraDoc/Makefile"
+                    "path": "patches/gdl/gdl-nodocs.patch"
                 }
             ]
         }

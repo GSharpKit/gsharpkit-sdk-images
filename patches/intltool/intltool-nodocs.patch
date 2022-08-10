@@ -1,0 +1,12 @@
+diff -Nur intltool-0.51.0.orig/Makefile.in intltool-0.51.0/Makefile.in
+--- intltool-0.51.0.orig/Makefile.in	2022-08-09 12:33:33.596024813 +0200
++++ intltool-0.51.0/Makefile.in	2022-08-09 12:34:02.012753798 +0200
+@@ -297,7 +297,7 @@
+ top_build_prefix = @top_build_prefix@
+ top_builddir = @top_builddir@
+ top_srcdir = @top_srcdir@
+-SUBDIRS = tests doc
++SUBDIRS = tests
+ 
+ # Scripts which are bundled with all intltoolized packages:
+ distributed_scripts = \

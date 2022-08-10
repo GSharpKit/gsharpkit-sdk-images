@@ -1,0 +1,16 @@
+diff -Nut gdl-3.40.0.orig/configure gdl-3.40.0/configure
+--- gdl-3.40.0.orig/configure	2022-08-09 12:20:23.134715150 +0200
++++ gdl-3.40.0/configure	2022-08-09 12:22:39.866231122 +0200
+@@ -17654,7 +17654,7 @@
+     ;;
+ esac
+ 
+-INTLTOOL_REQUIRED_VERSION_AS_INT=`echo 0.40.4 | awk -F. '{ print $ 1 * 1000 + $ 2 * 100 + $ 3; }'`
++INTLTOOL_REQUIRED_VERSION_AS_INT=`echo 0.10.4 | awk -F. '{ print $ 1 * 1000 + $ 2 * 100 + $ 3; }'`
+ INTLTOOL_APPLIED_VERSION=`intltool-update --version | head -1 | cut -d" " -f3`
+ INTLTOOL_APPLIED_VERSION_AS_INT=`echo $INTLTOOL_APPLIED_VERSION | awk -F. '{ print $ 1 * 1000 + $ 2 * 100 + $ 3; }'`
+ if test -n "0.40.4"; then
+Identiske underkataloger: gdl-3.40.0.orig/docs og gdl-3.40.0/docs
+Identiske underkataloger: gdl-3.40.0.orig/gdl og gdl-3.40.0/gdl
+Identiske underkataloger: gdl-3.40.0.orig/m4 og gdl-3.40.0/m4
+Identiske underkataloger: gdl-3.40.0.orig/po og gdl-3.40.0/po

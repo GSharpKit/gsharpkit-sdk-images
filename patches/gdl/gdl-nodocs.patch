@@ -1,0 +1,12 @@
+diff -Nur gdl-3.28.0.orig/Makefile.in gdl-3.28.0/Makefile.in
+--- gdl-3.28.0.orig/Makefile.in	2018-03-11 13:27:04.000000000 +0100
++++ gdl-3.28.0/Makefile.in	2018-05-04 14:14:27.919217559 +0200
+@@ -417,7 +417,7 @@
+ top_build_prefix = @top_build_prefix@
+ top_builddir = @top_builddir@
+ top_srcdir = @top_srcdir@
+-SUBDIRS = gdl docs po
++SUBDIRS = gdl po
+ ACLOCAL_AMFLAGS = -I m4
+ DISTCHECK_CONFIGURE_FLAGS = --enable-gtk-doc --enable-introspection
+ EXTRA_DIST = \

@@ -1,0 +1,17 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<component type="runtime">
+ <id>org.gsharpkit.Platform</id>
+ <metadata_license>XMedicus Systems ApS</metadata_license>
+ <project_license>XMedicus Systems ApS</project_license>
+ <name>GSharpKit</name>
+ <summary>GSharpKit Runtime</summary>
+ <description>
+  <p>
+	GSharpKit runtime for lægesystemet XMedicus
+  </p>
+ </description>
+ <releases>
+    <release version="@@SDK_BRANCH@@.@@SDK_RELEASE@@" />
+ </releases>
+ <url type="homepage">https://www.xmedicus.com/</url>
+</component>
