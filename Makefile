@@ -18,7 +18,7 @@ SDK_RELEASE=1
 SDK_RUNTIME_VERSION=3.38
 
 # Canned recipe for generating metadata
-SUBST_FILES=org.gsharpkit.Sdk.json metadata.sdk metadata.platform org.gsharpkit.Platform.metainfo.xml
+SUBST_FILES=org.gsharpkit.Sdk.json metadata.sdk metadata.platform org.gsharpkit.Platform.metainfo.xml org.gsharpkit.Sdk.metainfo.xml
 define subst-metadata
 	@echo -n "Generating files: ${SUBST_FILES}... ";
 	@for file in ${SUBST_FILES}; do 					\
@@ -42,9 +42,7 @@ build: ${REPO} $(patsubst %,%.in,$(SUBST_FILES))
 
 update-repo: ${REPO} $(patsubst %,%.in,$(SUBST_FILES))
 	$(call subst-metadata)
-	flatpak build sdk cp org.gsharpkit.Platform.metainfo.xml /usr/share/metainfo/
 	flatpak-builder --force-clean --ccache --repo=${REPO} --arch=${ARCH} --gpg-sign=0F1B3A5BD598CA6DCD3FF002C104C8E516AC3C73 --subject="build of org.gsharpkit.Sdk, `date`" sdk org.gsharpkit.Sdk.json
-	flatpak build sdk cp org.gsharpkit.Platform.metainfo.xml /usr/share/metainfo/
 
 export:
 	flatpak build-update-repo --generate-static-deltas --prune --gpg-sign=0F1B3A5BD598CA6DCD3FF002C104C8E516AC3C73 ./repo

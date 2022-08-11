@@ -101,6 +101,24 @@
                     "path": "patches/gdl/gdl-nodocs.patch"
                 }
             ]
+        },
+        {
+            "name": "metainfo",
+            "buildsystem": "simple",
+            "sources": [
+                {
+                    "type": "file",
+                    "path": "org.gsharpkit.Platform.metainfo.xml"
+                },
+                {
+                    "type": "file",
+                    "path": "org.gsharpkit.Sdk.metainfo.xml"
+                }
+            ],
+            "build-commands": [
+                    "install -Dp -m 644 org.gsharpkit.Platform.metainfo.xml /usr/share/metainfo/",
+                    "install -Dp -m 644 org.gsharpkit.Sdk.metainfo.xml /usr/share/metainfo/"
+            ]
         }
     ]
 }

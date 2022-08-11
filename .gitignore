@@ -7,4 +7,5 @@ metadata.platform
 metadata.sdk
 org.gsharpkit.Sdk.json
 org.gsharpkit.Platform.metainfo.xml
+org.gsharpkit.Sdk.metainfo.xml
 *.flatpak
