@@ -13,8 +13,8 @@ RPATH=/www/sdk.gsharpkit.org
 # SDK_BRANCH:          The version (branch) of runtime and sdk to produce
 # SDK_RUNTIME_VERSION: The org.gnome.Sdk and platform version to build against
 #
-SDK_BRANCH=36
-SDK_RELEASE=1
+SDK_BRANCH=39
+SDK_RELEASE=0
 SDK_RUNTIME_VERSION=3.38
 
 # Canned recipe for generating metadata
@@ -50,12 +50,18 @@ export:
 deploy:
 	${RSYNC} -avz --delete-after -e "${SSH}" repo ${RUSER}@${RHOST}:${RPATH}
 
-pkg:
+flatpak:
 	flatpak build-bundle --arch=${ARCH} --runtime ${REPO} GSharpKit-${SDK_BRANCH}.${SDK_RELEASE}.flatpak org.gsharpkit.Platform ${SDK_BRANCH}
+
+flatpak-sdk:
+	flatpak build-bundle --arch=${ARCH} --runtime ${REPO} GSharpSdk-${SDK_BRANCH}.${SDK_RELEASE}.flatpak org.gsharpkit.Sdk ${SDK_BRANCH}
 
 ${REPO}:
 	ostree  init --mode=archive-z2 --repo=${REPO}
 
+
+install-rpm:
+	sudo dnf install flatpak flatpak-builder
 
 install-sdk:
 	flatpak install org.gnome.Platform/x86_64/${SDK_RUNTIME_VERSION}
@@ -63,5 +69,6 @@ install-sdk:
 	flatpak install org.gnome.Sdk/x86_64/${SDK_RUNTIME_VERSION}
 	flatpak install org.gnome.Sdk.Locale/x86_64/${SDK_RUNTIME_VERSION}
 	flatpak install org.gnome.Sdk.Debug/x86_64/${SDK_RUNTIME_VERSION}
-	#flatpak update --user --subpath= org.gnome.Sdk.Locale
+	flatpak update --subpath= org.gnome.Sdk.Locale
+	flatpak update --subpath= org.gnome.Platform.Locale
 
